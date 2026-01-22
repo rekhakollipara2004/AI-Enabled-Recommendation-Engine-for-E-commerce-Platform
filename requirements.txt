@@ -1,4 +1,5 @@
+streamlit==1.25.0
 pandas
 numpy
-streamlit
 scikit-learn
+altair==4.2.2
