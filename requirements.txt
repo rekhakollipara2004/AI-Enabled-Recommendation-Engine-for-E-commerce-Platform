@@ -1,6 +1,7 @@
-streamlit>=1.30.0
-pandas
+streamlit==1.39.0
+pandas==2.3.3
 numpy
-scikit-learn
-altair>=4.2.2
-pillow>=10.0.0
+scikit-learn==1.8.0
+scipy
+altair==5.5.0
+rich==13.9.4
