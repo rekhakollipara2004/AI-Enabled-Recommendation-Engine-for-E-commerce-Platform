@@ -22,9 +22,9 @@ This project demonstrates how different recommendation algorithms can be combine
   2. Content-Based Filtering
         - This method recommends products similar to the items previously rated or viewed by the user based on product attributes.
   3. Collaborative Filtering
-        - This method recommends products similar to the items previously rated or viewed by the user based on product attributes.
+        - This technique identifies users with similar preferences and recommends products liked by those users.
   4.  Hybrid Recommendation
-        - This method recommends products similar to the items previously rated or viewed by the user based on product attributes.
+        - The hybrid approach combines content-based and collaborative filtering techniques to improve recommendation accuracy and relevance.
 
 - Identifies users with similar interests
 - Shows recent user activity
