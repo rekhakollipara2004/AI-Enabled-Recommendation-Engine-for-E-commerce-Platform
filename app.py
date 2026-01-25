@@ -78,13 +78,13 @@ st.markdown("""
         }
     }
 
-    /* Text Colors - ALL WHITE */
+    /* Text Colors */
     p, span, label, div {
         color: #2D3436 !important;
         font-family: 'Poppins', sans-serif !important;
     }
     
-    /* ========== PRODUCT CARD STYLING - DARK THEME ========== */
+    /* ========== PRODUCT CARD STYLING ========== */
     .product-card {
         background: #FFFFFF !important;
         border-radius: 20px;
@@ -186,15 +186,15 @@ st.markdown("""
         transition: all 0.3s ease !important;
         border: 1px solid #E0E0E0 !important;
         background: transparent !important;
-        color: white !important;
+        color: #2D3436 !important;
         box-shadow: none !important;
     }
     
     .stButton > button:hover {
         transform: translateY(-2px) !important;
-        border-color: white !important;
+        border-color: #667EEA !important;
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3) !important;
-        background: rgba(255, 255, 255, 0.05) !important;
+        background: rgba(102, 126, 234, 0.05) !important;
     }
     
     /* ========== SIDEBAR INPUT STYLING ========== */
@@ -223,9 +223,9 @@ st.markdown("""
         background-color: #FFFFFF !important;
     }
     
-    /* ========== FIX SELECTBOX/DROPDOWN TEXT - WHITE ========== */
+    /* ========== FIX SELECTBOX/DROPDOWN TEXT ========== */
     [data-testid="stSelectbox"] label {
-        color: #ffffff !important;
+        color: #2D3436 !important;
     }
     
     [data-testid="stSelectbox"] div[data-baseweb="select"] {
@@ -239,7 +239,7 @@ st.markdown("""
     
     /* Dropdown options */
     [data-baseweb="popover"] {
-        background-color: #2D3436 !important;
+        background-color: #FFFFFF !important;
     }
     
     [role="option"] {
@@ -290,7 +290,7 @@ st.markdown("""
     }
     
     .user-card-item {
-        background:#F8F9FA !important;
+        background:#FFFFFF !important;
         border: 1px solid #E0E0E0;
         border-radius: 16px;
         padding: 24px;
@@ -307,7 +307,7 @@ st.markdown("""
         left: 0;
         right: 0;
         height: 4px;
-        background: white;
+        background: #667EEA;
         transform: scaleX(0);
         transition: transform 0.3s ease;
     }
@@ -318,7 +318,7 @@ st.markdown("""
     
     .user-card-item:hover {
         transform: translateY(-8px);
-        border-color: white;
+        border-color: #667EEA;
         box-shadow: 0 12px 32px rgba(102, 126, 234, 0.3);
     }
     
@@ -326,7 +326,7 @@ st.markdown("""
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: white;
+        background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -348,60 +348,7 @@ st.markdown("""
         color: #999 !important;
         text-align: center;
     }
-    
-    /* ========== DROPDOWN MENU STYLING ========== */
-    .dropdown-container {
-        position: relative;
-        display: inline-block;
-    }
-    
-    .dropdown-button {
-        background: #FFFFFF;
-        border: 1px solid #E0E0E0;
-        border-radius: 12px;
-        padding: 12px 20px;
-        color: white;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-    }
-    
-    .dropdown-button:hover {
-        border-color: white;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-    }
-    
-    /* ========== FAVORITES SECTION ========== */
-    .favorites-badge {
-        background: white;
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 11px;
-        font-weight: 700;
-        margin-left: 8px;
-    }
 
-[data-testid="stDialog"] h3 {
-                color: #000000 !important;
-            }
-            [data-testid="stDialog"] p {
-                color: #000000 !important;
-            }
-            [data-testid="stDialog"] strong {
-                color: #000000 !important;
-            }
-            [data-testid="stDialog"] [data-testid="stMarkdownContainer"] {
-                color: #000000 !important;
-            }
 </style>
 """, unsafe_allow_html=True)
 
@@ -462,23 +409,6 @@ else:
         for _, row in history.iterrows():
             st.sidebar.write(f"• {row['Name']} ⭐ {row['Rating']}")
 
-# ================= DROPDOWN MENU IN SIDEBAR =================
-st.sidebar.markdown("---")
-st.sidebar.subheader("Your Favourites")
-
-# Create dropdown using expander
-if "show_favorites" not in st.session_state:
-    st.session_state.show_favorites = False
-
-if "show_user_products" not in st.session_state:
-    st.session_state.show_user_products = False
-
-# Favorites button
-if st.sidebar.button("❤️ My Favorites", use_container_width=True):
-    st.session_state.show_favorites = True
-    st.session_state.show_user_products = False
-    st.rerun()
-
 # ================= MAIN =================
 st.markdown('<h1 class="main-title">🤖 AI Enabled Recommendation Engine For An E-Commerce Platform</h1>', unsafe_allow_html=True)
 
@@ -523,9 +453,7 @@ def display_products(title, data, section_id, show_sort=True):
         with col2:
             sort_options = [
                 "Recommended",
-                "What's New",
                 "Popularity",
-                "Better Discount",
                 "Price: High to Low",
                 "Price: Low to High",
                 "Customer Rating"
@@ -588,59 +516,8 @@ def display_products(title, data, section_id, show_sort=True):
                     <div class="product-price">{price}</div>
                 </div>
                 """
-
+                
                 st.markdown(card_html, unsafe_allow_html=True)
-                
-                # Action buttons OUTSIDE the card - SYMBOLS ONLY
-                btn_col1, btn_col2 = st.columns(2)
-                with btn_col1:
-                    if st.button("📋", key=view_key, use_container_width=True):
-                        st.session_state.show_product_modal = True
-                        st.session_state.product_details = {
-                            'Name': product_name,
-                            'Brand': row.get('Brand', 'Unknown'),
-                            'Rating': row.get('Rating', 'N/A'),
-                            'ReviewCount': row.get('ReviewCount', 0),
-                            'ImageURL': img_url,
-                            'Price': price
-                        }
-                        st.rerun()
-                
-                with btn_col2:
-                    fav_icon = "💖" if is_favorite else "🤍"
-                    if st.button(fav_icon, key=fav_key, use_container_width=True):
-                        if is_favorite:
-                            st.session_state.favorites.remove(product_name)
-                            st.toast("💔 Removed from favorites")
-                        else:
-                            st.session_state.favorites.append(product_name)
-                            st.toast("💖 Added to favorites!")
-                        st.rerun()
-
-# ================= PRODUCT DETAILS MODAL =================
-if st.session_state.show_product_modal and st.session_state.product_details:
-    product = st.session_state.product_details
-    
-    @st.dialog("📦 Product Details")
-    def show_product_modal():
-        col1, col2 = st.columns([1, 1])
-        
-        with col1:
-            st.image(product['ImageURL'], use_container_width=True)
-        
-        with col2:
-            st.markdown(f"### {product['Name']}")
-            st.write("")
-            st.markdown(f"**🏷️ Brand:** {product['Brand']}")
-            st.markdown(f"**⭐ Rating:** {product['Rating']} ({product['ReviewCount']} reviews)")
-            st.markdown(f"**💰 Price:** {product['Price']}")
-        
-        if st.button("Close", use_container_width=True):
-            st.session_state.show_product_modal = False
-            st.session_state.product_details = None
-            st.rerun()
-    
-    show_product_modal()
 
 # ================= SHOW FAVORITES =================
 if st.session_state.show_favorites:
@@ -661,7 +538,7 @@ if st.session_state.show_favorites:
         st.info("You haven't added any favorites yet!")
 
 # ================= USER TOP RATED / TRENDING =================
-elif not st.session_state.show_user_products:
+if not st.session_state.show_user_products:
     if user_id == 0:
         top_items = get_top_rated_items(df, top_n)
         display_products("🔥 Trending Products", top_items, "trending", show_sort=True)
